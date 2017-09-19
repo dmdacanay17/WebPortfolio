@@ -1,0 +1,289 @@
+
+p{
+  color: blue;
+}
+button {
+  border: none;
+  outline: none;
+  outline: 0;
+  background-color: transparent;
+}
+#navigation-panel{
+  direction:rtl;
+  position: fixed;
+  min-height: 110%;
+  width: 200px;
+  left: -200px;
+  top: 0px;
+  text-align: center;
+  background-color: magenta;
+  overflow: auto;
+    max-height: 150px;
+    overflow-y: scroll;
+    z-index: 10000;
+}
+#projects button{
+  width: 20px;
+}
+#navigation-panel p{
+  color: green;
+}
+#page-body{
+  font-family: 'Exo 2';
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+#toggle-nav{
+  position: fixed;
+  top: 50%;
+  height: 50px;
+  width: 10px;
+  font-size: 40px;
+  transform: translate(0, -50%);
+  z-index: 1000;
+}
+#nav2{
+  position: relative;
+}
+#projects{
+  position: relative;
+  overflow: hidden;
+}
+
+#pageHeader{
+  position: relative;
+  background-color: blue;
+  background-image: url();
+  z-index: 1;
+  overflow: hidden;
+}
+#pageHeader h1{
+  position: absolute;
+  font-size: 60px;
+  top:40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#space {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+#sparkDiv{
+  position: relative;
+  top: 20%;
+  left: 20%;
+  height: 40px;
+  width: 40px;
+
+}
+#spark {
+  position: absolute;
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  z-index: 1;
+}
+#aura{
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent, yellow);
+  animation: radiate;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  z-index: 0;
+}
+#nameHeader{
+    position: absolute;
+    width: 100%;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 3;
+}
+
+
+
+
+#about{
+  position: relative;
+  background-color: yellow;
+  z-index: 2;
+  overflow: hidden;
+}
+#proj{
+  position: relative;
+  background-color: green;
+  z-index: 3;
+  overflow: hidden;
+}
+#javaQuizJSF{
+  position: relative;
+  background-color: red;
+  z-index: 4;
+  padding: 10% 0px 20% 0px;
+  overflow: hidden;
+}
+#javaQuizJSF h1{
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, 0);
+}
+#javaQuizJSFDesc{
+  position: absolute;
+  background-color: pink;
+  height: 70%;
+  width: 45%;
+  left: 5%;
+  top: 20%;
+}
+#javaQuizJSFImages{
+  position: absolute;
+  background-color: blue;
+  height: 70%;
+  width: 40%;
+  right: 5%;
+  top: 20%;
+}
+#javaQuizJSFImages img{
+  height: 90%;
+}
+#javaQuizJSFLeft{
+  position: absolute;
+top: 50%;
+  left: 0%;
+  transform: translate(0, -50%);
+}
+#javaQuizJSFRight{
+   position: absolute;
+  top: 50%;
+  right: 0%;
+  transform: translate(0, -50%);
+}
+#pomodoro{
+  position: relative;
+  background-color: orange;
+  z-index: 5;
+  overflow: hidden;
+}
+#simon{
+  position: relative;
+  background-color: grey;
+  z-index: 6;
+  overflow: hidden;
+}
+#skills{
+  position: relative;
+  background-color: blue;
+  z-index: 7;
+  overflow: hidden;
+}
+#contact{
+  position: relative;
+  background-color: purple;
+  z-index: 8;
+  overflow: hidden;
+}
+@-webkit-keyframes openNav {
+  from {left: -200px;}
+  to {left: 0px;}
+}
+@-webkit-keyframes openBody {
+  from {left: 0px;}
+  to {left: 200px;}
+}
+@-webkit-keyframes openBtn {
+  from {left: 0px;}
+  to {left: 200px;}
+}
+@-webkit-keyframes closeNav {
+  from {left: 0px;}
+  to {left: -200px;}
+}
+@-webkit-keyframes closeBody {
+  from {left: 200px;}
+  to {left: 0px;}
+}
+@-webkit-keyframes closeBtn {
+  from {left: 200px;}
+  to {left: 0px;}
+}
+
+
+
+
+
+
+
+@-moz-keyframes openNav {
+  from {left: -200px;}
+  to {left: 0px;}
+}
+@-moz-keyframes openBody {
+  from {left: 0px;}
+  to {left: 200px;}
+}
+@-moz-keyframes openBtn {
+  from {left: 0px;}
+  to {left: 200px;}
+}
+@-moz-keyframes closeNav {
+  from {left: 0px;}
+  to {left: -200px;}
+}
+@-moz-keyframes closeBody {
+  from {left: 200px;}
+  to {left: 0px;}
+}
+@-moz-keyframes closeBtn {
+  from {left: 200px;}
+  to {left: 0px;}
+}
+
+
+body::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+#navigation-panel::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+#navigation-panel::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+#navigation-panel::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+
+
+
+@-webkit-keyframes radiate{
+  0% {transform: scale(0); opacity: 1;}
+  100% {transform: scale(1); opacity: 0;}
+}
+@-webkit-keyframes glow{
+  0% {opacity: 1;}
+  50% {opacity: .2}
+  100% {opacity: 1;}
+}

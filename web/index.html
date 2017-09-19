@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+        <link rel="stylesheet" href="home.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="home.js"></script>
+    </head>
+
+    <body onscroll="scroll()" onload="loadScript();" onresize="resize()">
+        <div id="navigation-panel">
+            <P>About Me</P>
+            <div id="projectHeader" style="display: inline-block">
+                <p style="float: left; position: relative;">Projects</p> <button id="toggle-projects" class="glyphicon glyphicon-chevron-down" onclick="toggleProjects()"></button>
+            </div>
+            <div id="nav2">
+                <P>Skills</P>
+                <P>Contact Me</P>
+            </div>
+            <div id="projects">
+                <p>JSF Java Quiz</p>
+            </div>
+        </div>
+
+        <div id="page-body">
+            <div id="pageHeader">
+                <div id="space">
+                    <img id="nameHeader" src="images/nameHeader.png"/>
+                    <div id="sparkDiv">
+                        <div id="spark"></div>
+                        <div id="aura"></div>
+                    </div>
+                </div>
+                <div id="starSpace"></div>
+            </div>
+            <div id="about">
+                <h1>About Me</h1>
+                <p>Todo: write summary of me</p>
+            </div>
+            <div id="proj">
+                <h1>Projects</h1>
+            </div>
+            <div id="javaQuizJSF">
+                <h1>Java Book Quiz Website</h1>
+                <div id="javaQuizJSFDesc">
+                    <h5>Description</h5>
+                    <p>This assignment was from my Rapid Java Development class. It was designed to let a user take multiple practice choice quizzes from out professor’s java book in a web browser. The user must log in or create an account on start up. Once the user
+                        logs in they are show a page with their quiz summaries (a summary for each chapter). From there they can select which chapter they want to look at (the user can switch chapters at any time). When the user is on a quiz it shows if they have previously
+                        answered a question and shown if they were right or wrong. If an answer is wrong or unanswered they can change their answer until they get the question right.</p>
+                    <h5>Skills Used</h5>
+                    <p>JAVA, JSF, XHTML, CSS, SQL, NetBeans</p>
+                </div>
+                <div id="javaQuizJSFImages">
+                    <button id="javaQuizJSFLeft" class="glyphicon glyphicon-chevron-left" style="font-size: 40px" onclick="javaQuizJSFChange('-')"></button>
+                    <img id="javaQuizJSFImage"></img>
+                    <button id="javaQuizJSFRight" class="glyphicon glyphicon-chevron-right" style="font-size: 40px" onclick="javaQuizJSFChange('+')"></button>
+                </div>
+            </div>
+            <div id="pomodoro">
+
+            </div>
+            <div id="simon">
+
+            </div>
+            <div id="skills">
+                <h1>Skills</h1>
+                <p>Todo: write summary of me</p>
+            </div>
+            <div id="contact">
+                <h1>Contact</h1>
+                <p>Email: dmdacanay17@gmail.com</p>
+                <p>LinkedIn</p><i class="fa fa-linkedin-square"></i>
+            </div>
+        </div>
+        <button class="glyphicon glyphicon-chevron-right" id="toggle-nav" onclick="toggleNav()"></button>
+    </body>
+</html>
