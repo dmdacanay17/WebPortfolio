@@ -16,12 +16,17 @@ var sectHeights = [];
 var current = 0;
 var javaQuizJSFChangeVal = 0;
 var space = 0;
-
+var planets = ["mercury", "venus", "earth", "mars", "asteroidBelt", "jupiter", "saturn", "uranus", "neptune"];
+var planetImages = ["mercuryImage", "venusImage", "earthImage", "marsImage", "asteroidBeltImage", "jupiterImage", "saturnImage", "uranusImage", "neptuneImage"];
+var distance = [14, 18, 22, 26, 60, 60, 70, 80, 90];
+var times = [88, 225, 365, 687, 10000, 4333, 10756, 30687, 60190];
+var sizes = [7, 8, 8, 5, 9, 7, 7, 5, 4];
 
 function loadScript() {
     projHeight = document.getElementById("projects").offsetHeight;
     resize();
     makeSpace();
+    solarSystem();
 }
 
 function resize() {
@@ -31,6 +36,7 @@ function resize() {
     }
     scroll();
     makeSpace();
+    solarSystem();
 }
 
 function toggleNav() {
@@ -162,4 +168,25 @@ function makeSpace() {
         star.id = "stars";
         document.getElementById("starSpace").appendChild(star);
     }
+}
+
+function solarSystem() {
+    x = 2000;
+    size = 20.0;
+    left = 50;
+    document.getElementById("sun").style.height = 8 + "%";
+    document.getElementById("sun").style.width = document.getElementById("sun").scrollHeight + "px";
+    document.getElementById("sun").style.animationDuration = "3600s";
+    for (i = 0; i < planets.length; i++) {
+        document.getElementById(planets[i]).style.height = distance[i] + "%";
+        document.getElementById(planets[i]).style.width = document.getElementById(planets[i]).scrollHeight + "px";
+        document.getElementById(planets[i]).style.animationDuration = times[i] * 20 + "ms";
+        document.getElementById(planetImages[i]).style.position = "absolute";
+        document.getElementById(planetImages[i]).style.position = "absolute";
+        document.getElementById(planetImages[i]).style.height = sizes[i] + "%";
+        document.getElementById(planetImages[i]).style.width = document.getElementById(planetImages[i]).scrollHeight + "px";
+    }
+    document.getElementById("asteroidBeltImage").style.height = 100 + "%";
+    document.getElementById("asteroidBeltImage").style.width = document.getElementById("asteroidBeltImage").scrollHeight + "px";
+    
 }
