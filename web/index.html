@@ -2,74 +2,70 @@
 <html>
 
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
         <link rel="stylesheet" href="home.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
         <script src="home.js"></script>
     </head>
 
     <body onscroll="scroll()" onload="loadScript();" onresize="resize()">
         <div id="navigation-panel">
-            <P>About Me</P>
-            <div id="projectHeader" style="display: inline-block">
-                <p style="float: left; position: relative;">Projects</p> <button id="toggle-projects" class="glyphicon glyphicon-chevron-down" onclick="toggleProjects()"></button>
+            <div id="links">
+                <h3 id ="topLink">Top</h3>
+                <h3 id ="aboutLink">About Me</h3>
+                <h3 id ="skillsLink">Skills</h3>
+                <h3 id ="projectLink">Projects</h3>
+                <h3 id ="contactLink">Contact Me</h3>
             </div>
-            <div id="nav2">
-                <P>Skills</P>
-                <P>Contact Me</P>
-            </div>
-            <div id="projects">
-                <p>JSF Java Quiz</p>
-            </div>
+            <div id="navContent"></div>
         </div>
 
         <div id="page-body">
             <div id="pageHeader">
-                <div id="space">
-                    <img id="nameHeader" src="images/nameHeader.png"/>
-                    <div id="solarSystem">
-                        <div id="sun" >
-                            <img id="sunImage" src="images/sun.png"/>
-                        </div>
-                        <div id="mercury" >
-                            <img id="mercuryImage" src="images/mercury.png"/>
-                        </div>
-                        <div id="venus" >
-                            <img id="venusImage" src="images/venus.png"/>
-                        </div>
-                        <div id="earth" >
-                            <img id="earthImage" src="images/earth.png"/>
-                        </div>
-                        <div id="mars" >
-                            <img id="marsImage" src="images/mars.png"/>
-                        </div>
-                        <div id="asteroidBelt" >
-                            <img id="asteroidBeltImage" src="images/asteroidBelt.png"/>
-                        </div>
-                        <div id="jupiter">
-                            <img id="jupiterImage" src="images/jupiter.png"/>
-                        </div>
-                        <div id="saturn" >
-                            <img id="saturnImage" src="images/saturn.png"/>
-                        </div>
-                        <div id="uranus" >
-                            <img id="uranusImage" src="images/uranus.png"/>
-                        </div>
-                        <div id="neptune" >
-                            <img id="neptuneImage" src="images/neptune.png"/>
-                        </div>
+                <img id="nameHeader" src="images/nameHeader.png"/>
+                <div id="softwareDeveloperText"></div>
+                <div id="solarSystem">
+                    <div id="sun" onclick="showEarth()" >
+                        <img id="sunImage" src="images/sun.png"/>
                     </div>
-                    <div id="sparkDiv">
-                        <div id="spark"></div>
-                        <div id="aura"></div>
+                    <div id="mercury" >
+                        <img id="mercuryImage" src="images/mercury.png"/>
                     </div>
+                    <div id="venus" >
+                        <img id="venusImage" src="images/venus.png"/>
+                    </div>
+                    <div id="earth" >
+                        <img id="earthImage" src="images/earth.png"/>
+                    </div>
+                    <div id="mars" >
+                        <img id="marsImage" src="images/mars.png"/>
+                    </div>
+                    <div id="asteroidBelt" >
+                        <img id="asteroidBeltImage" src="images/asteroidBelt.png"/>
+                    </div>
+                    <div id="jupiter">
+                        <img id="jupiterImage" src="images/jupiter.png"/>
+                    </div>
+                    <div id="saturn" >
+                        <img id="saturnImage" src="images/saturn.png"/>
+                    </div>
+                    <div id="uranus" >
+                        <img id="uranusImage" src="images/uranus.png"/>
+                    </div>
+                    <div id="neptune" >
+                        <img id="neptuneImage" src="images/neptune.png"/>
+                    </div>
+                    
                 </div>
+                <div id="spaceRocket"></div>
                 <div id="starSpace"></div>
             </div>
             <div id="about">
                 <h1>About Me</h1>
-                <p>Todo: write summary of me</p>
+                <p id="ass">Todo: write summary of me</p>
             </div>
             <div id="proj">
                 <h1>Projects</h1>
