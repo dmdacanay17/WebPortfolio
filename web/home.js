@@ -5,7 +5,6 @@ var height;
 var sectIDs = ["pageHeader", "about", "proj", "javaQuizJSF", "pomodoro", "simon", "skills", "contact"
 ];
 var sectHeights = [];
-var current = 0;
 var javaQuizJSFChangeVal = 0;
 var space = 0;
 var planets = ["mercury", "venus", "earth", "mars", "asteroidBelt", "jupiter", "saturn", "uranus", "neptune"];
@@ -14,13 +13,22 @@ var distance = [14, 18, 22, 26, 60, 60, 70, 80, 90];
 var times = [88, 225, 365, 687, 10000, 4333, 10756, 30687, 60190];
 var sizes = [7, 8, 8, 5, 9, 7, 7, 5, 4];
 var links = ["topLink", "aboutLink", "skillsLink", "projectLink", "contactLink"];
+var isDown = false;
+var pastX;
+var pastY;
+var convas;
+var ctx;
+var toolSwitchBool = false;
 
 
 function loadScript() {
-    //projHeight = document.getElementById("projects").offsetHeight;
+    canvas = document.getElementById('notebookSketch');
+    ctx = canvas.getContext('2d');
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1;
     resize();
     softwareEngineer();
-
+    spaceNav();
 }
 
 function resize() {
@@ -31,8 +39,7 @@ function resize() {
     scroll();
     makeSpace();
     solarSystem();
-    spaceNav();
-    
+    notebookPaper();
 }
 
 function toggleNav() {
@@ -104,23 +111,19 @@ function scroll() {
             document.getElementById(sectIDs[i]).style.top = sectHeights[i] + "px";
         }
     }
-    sectFixed = -1;
-    for(i = 0; i < sectIDs.length; i++){
-        if(document.getElementById(sectIDs[i]).style.position == "fixed"){
+    sectFixed = 0;
+    for (i = 0; i < sectIDs.length; i++) {
+        if (document.getElementById(sectIDs[i]).style.position === "fixed") {
             sectFixed++;
         }
     }
-    /*
-    if(sectFixed!=current){
-        current = sectFixed;
-        if(current=0){
-            spaceNav();
-        }else if(current=1){
-            notbookNav();
-        }
+
+
+    if (sectFixed <= 1) {
+        spaceNav();
+    } else if (sectFixed === 2) {
+        notebookNav();
     }
-    */
-    document.getElementById("ass").innerHTML = sectFixed;
 }
 
 function javaQuizJSFChange(str) {
@@ -187,13 +190,14 @@ function solarSystem() {
 }
 
 function spaceNav() {
+    document.getElementById("navigation-panel").style.backgroundImage = "";
     document.getElementById("navigation-panel").style.backgroundColor = "#7EC7FF";
     for (i = 0; i < links.length; i++) {
         document.getElementById(links[i]).style.backgroundSize = "100% 100%";
         document.getElementById(links[i]).style.backgroundImage = "url('images/cloud.png')";
     }
     document.getElementById("navContent").innerHTML = '<img id="rocketImage" src="images/rocket.png"/>\n\
-        <img id="middleRocketImage" src="images/middleRocket.png""/>\n\
+        <img id="middleRocketImage" src="images/middleRocket.png"/>\n\
         <img id="leftRocketImage" src="images/leftRocket.png"/>\n\
         <img id="rightRocketImage" src="images/rightRocket.png"/>\n\
         <img id="launchPadImage" src="images/launchPad.png"/>\n\
@@ -216,18 +220,18 @@ function launchRocket() {
     document.getElementById("rightRocketImage").style.animation = "launchRocketRightBooster 1 linear";
     document.getElementById("rightRocketImage").style.animationDuration = 20 + "s"
     document.getElementById("rightRocketImage").style.animationFillMode = "forwards";
-    
+
     countDown = 10;
-    document.getElementById("launchButton").innerHTML ="10";
-    document.getElementById("launchButton").disabled = "true"; 
-    setInterval(function(){
+    document.getElementById("launchButton").innerHTML = "10";
+    document.getElementById("launchButton").disabled = "true";
+    setInterval(function () {
         countDown--;
-        if(countDown>=0){
-           document.getElementById("launchButton").innerHTML = countDown; 
-        }else{
+        if (countDown >= 0) {
+            document.getElementById("launchButton").innerHTML = countDown;
+        } else {
             clearInterval();
         }
-    },1000);
+    }, 1000);
 
     setTimeout(function () {
         document.getElementById("spaceRocket").innerHTML = '<img id="rocketSpaceImage" src="images/rocket.png"/>\n\
@@ -291,4 +295,116 @@ function softwareEngineer() {
     }, 1000);
 }
 
-f
+function notebookNav() {
+    document.getElementById("navigation-panel").style.backgroundImage = "url('images/notebookCover.png')";
+    document.getElementById("navigation-panel").style.backgroundSize = "100% 100%";
+    for (i = 0; i < links.length; i++) {
+        document.getElementById(links[i]).style.backgroundSize = "100% 100%";
+        document.getElementById(links[i]).style.backgroundColor = "white";
+    }
+    document.getElementById("navContent").innerHTML = '\n\
+        <div id="red"><h4 id="redLabel">R</h4><input type="range" onchange="rgb()" id="redRange" value="255" min="0" max="255"></div>\n\
+        <div id="green"><h4 id="greenLabel">G</h4><input type="range" onchange="rgb()" id="greenRange" value="255" min="0" max="255"></div>\n\
+        <div id="blue"><h4 id="blueLabel">B</h4><input type="range" onchange="rgb()" id="blueRange" value="255" min="0" max="255"></div>\n\
+        <div id="size"><h4 id="sizeLabel">Pencil Width</h5><input type="range" onchange="penWidth()" id="drawWidthRange" value="100" min="1" max="100"></div>\n\
+        <div id="penColorDisplay"><div id="penSizeDisplay"></div></div>\n\
+        <div id="toolToggle">\n\
+            <h5 id="pencilActive">Pencil</h5>\n\
+            <div id="pencilToggle" onclick="toolSwitch()" >\n\
+                <div id="toolSwitch" onclick="toolSwitch()">\n\
+            </div>\n\
+            <h5 id="eraserActive">Eraser</h5>\n\
+        </div>';
+
+}
+
+function noteBookDraw() {
+    if (isDown === true) {
+        var loc = canvas.getBoundingClientRect();
+        var x = event.clientX - loc.left;
+        var y = event.clientY - loc.top;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(pastX, pastY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        pastX = x;
+        pastY = y;
+    }
+    movePencil();
+}
+
+function noteBookBool(isDownBool) {
+    scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    isDown = isDownBool;
+    pastX = event.clientX;
+    pastY = event.clientY + scrollTop - sectHeights[1];
+    if (!togNav) {
+        pastX = event.clientX - 200;
+    }
+}
+
+function rgb() {
+    ctx.globalCompositeOperation = "source-over";
+    redValue = 255 - document.getElementById("redRange").value;
+    blueValue = 255 - document.getElementById("blueRange").value;
+    greenValue = 255 - document.getElementById("greenRange").value;
+    ctx.strokeStyle = "rgb(" + redValue + "," + greenValue + "," + blueValue + ")";
+    document.getElementById("penSizeDisplay").style.backgroundColor = "rgb(" + redValue + "," + greenValue + "," + blueValue + ")";
+    document.getElementById("pencilColor").style.backgroundColor = "rgb(" + redValue + "," + greenValue + "," + blueValue + ")";
+
+}
+
+function penWidth() {
+    ctx.lineWidth = (101 - document.getElementById("drawWidthRange").value);
+    document.getElementById("penSizeDisplay").style.width = (102 - document.getElementById("drawWidthRange").value) + "px";
+    document.getElementById("penSizeDisplay").style.height = (102 - document.getElementById("drawWidthRange").value) + "px";
+
+}
+
+function eraser() {
+    ctx.strokeStyle = "rgb(255, 255, 255)";
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.strokeStyle = ("rgba(255,255,255,255)");
+    ctx.fillStyle = "rgba(255,0,0,0)";
+
+}
+
+function toolSwitch() {
+    if (toolSwitchBool != true) {
+        toolSwitchBool = true;
+        eraser();
+        document.getElementById("pencil").style.transform = "rotate(-225deg)";
+        document.getElementById("toolSwitch").style.right = "1px";
+    } else {
+        toolSwitchBool = false;
+        rgb();
+        document.getElementById("pencil").style.transform = "rotate(-45deg)";
+        document.getElementById("toolSwitch").style.right = "15px";
+
+    }
+}
+
+function notebookPaper() {
+    //document.getElementById("notebookSketch").style.height = document.getElementById("about").scrollHeight;
+    //document.getElementById("notebookSketch").style.height = document.getElementById("about").scrollHeight;
+
+    canvas.height = document.getElementById("about").scrollHeight;
+    canvas.width = window.innerWidth;
+    notebookHeight = document.getElementById("about").scrollHeight - 107;
+    innHTML = '<img id="notebookTop" src="images/notebookSheetTop.png"/>';
+    while (notebookHeight > 0) {
+        innHTML += '<img id="notebookLine" src="images/notebookSheetLines.png"/>';
+        notebookHeight -= 40;
+    }
+    document.getElementById("noteBookPaper").innerHTML = innHTML;
+}
+
+function movePencil() {
+    loc = document.getElementById("about").getBoundingClientRect();
+    x = event.clientX - loc.left - 70;
+    y = event.clientY - loc.top - 160;
+    document.getElementById("pencil").style.left = x + "px";
+    document.getElementById("pencil").style.top = y + "px";
+}

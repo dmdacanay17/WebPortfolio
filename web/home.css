@@ -82,11 +82,10 @@ button {
     transform: translate(-50%, 0%);
     z-index: 4;
 }
-
 #launchButton{
     background: #550000;
-  color: #E70000;
-  font-family: orbitron;
+    color: #E70000;
+    font-family: orbitron;
     position: absolute;
     width: 50%;
     height: 9%;
@@ -95,7 +94,6 @@ button {
     z-index: 5;
     transform: translate(-50%, 0%);
 }
-
 @keyFrames launchRocket{
     0%{transform:  translate(-51%);}
     2%{transform:  translate(-49%);}
@@ -178,6 +176,163 @@ button {
     100%{transform:  translate(250%,50%) rotate(45deg)}
 }
 
+/*navigation Panel "Notebook"---------------------------------------------------
+--------------------------------------------------------------------------------
+------------------------------------------------------------------------------*/
+#red{
+    position: absolute;
+    top: 0;
+    left: 20px;
+    height: 10%;
+    width: 160px;
+    background-color: white;
+    border-radius: 10%;
+}
+#redLabel{
+    position: absolute;
+    top: 0;
+    left: 0%;
+    height: 10%;
+    width: 20px;
+}
+#redRange{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    height: 10%;
+    width: 130px;
+    transform: translateY(-50%);
+}
+#green{
+    position: absolute;
+    top: 15%;
+    left: 20px;
+    height: 10%;
+    width: 160px;
+    background-color: white;
+    border-radius: 10%;
+}
+#greenLabel{
+    position: absolute;
+    top: 0;
+    left: 0%;
+    height: 10%;
+    width: 20px;
+}
+#greenRange{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    height: 10%;
+    width: 130px;
+    transform: translateY(-50%);
+}
+#blue{
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    height: 10%;
+    width: 160px;
+    background-color: white;
+    border-radius: 10%;
+}
+#blueLabel{
+    position: absolute;
+    top: 0;
+    left: 0%;
+    height: 10%;
+    width: 20px;
+}
+#blueRange{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    height: 10%;
+    width: 130px;
+    transform: translateY(-50%);
+}
+#size{
+    position: absolute;
+    top: 45%;
+    left: 20px;
+    height: 10%;
+    width: 160px;
+    background-color: white;
+    border-radius: 10%;
+}
+#sizeLabel{
+    position: absolute;
+    top: 0;
+    left: 0%;
+    height: 10%;
+    font-size: 12px;
+    width: 40px;
+}
+#drawWidthRange{
+    position: absolute;
+    top: 50%;
+    left: 45px;
+    height: 10%;
+    width: 105px;
+    transform: translateY(-50%);
+}
+#penColorDisplay{
+    position: absolute;
+    left:50%;
+    top:60%;
+    width:100px;
+    height:100px;
+    border:1px solid #000000;
+    background-color: white;
+    transform: translateX(-50%);
+}
+#penSizeDisplay{
+    position: absolute;
+    height: 2px;
+    width: 2px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: black;
+    transform: translate(-50%, -50%);
+}
+
+#toolToggle{
+    position: absolute;
+    bottom: 2%;
+    left: 10px;
+    height: 10%;
+    width: 180px;
+    background-color: white;
+    border-radius: 10%;
+}
+#pencilToggle{
+    position: absolute;
+    height: 10px;
+    width: 30px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: blue;
+    border-radius: 10%;
+}
+#toolSwitch{
+    position: absolute;
+    height: 8px;
+    width: 13px;
+    left: 1px;
+    top: 1px;
+    background-color: grey;
+    border-radius: 10%;
+}
+#pencilActive{
+    position: absolute;
+    left: 5%;
+}
+#eraserActive{
+    position: absolute;
+    right: 5%;
+}
 
 
 
@@ -221,7 +376,7 @@ button {
     z-index: 100000;
 }
 #softwareDeveloperText{
-     position: absolute;
+    position: absolute;
     width: 60%;
     bottom: 50%;
     left: 40%;
@@ -269,8 +424,6 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-
 #spaceRocket{
     position: absolute;
     width: 100%;
@@ -278,7 +431,6 @@ button {
 
     z-index: 200000000;
 }
-
 #rocketSpaceImage2{
     width: 5%;
     position: absolute;
@@ -286,21 +438,102 @@ button {
     bottom:-54%;
     z-index: 1000002;
 }
-
-
 @keyFrames moonLanding{
     0%{bottom: 100%;}
     100%{bottom: 54%; transform: scale(.6)}
 }
 
 
+
+/*About "Notebook"--------------------------------------------------------------
+--------------------------------------------------------------------------------
+------------------------------------------------------------------------------*/
+
 #about{
     position: relative;
-    background-color: yellow;
+    width: 100%;
     z-index: 2;
-    overflow: hidden;
-    opacity: 1;
 }
+#notebookSketch{
+    position: absolute;
+    left:0;
+    width:100%;
+    z-index: 3;
+}
+#noteBookPaper{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+#notebookTop{
+    position: relative;
+    width: 100%;
+    height: 107px;
+    margin: 0;
+    padding: 0;
+}
+#notebookLine{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+}
+#pencil{
+    position: absolute;
+    width: 429px;
+    height: 25px;
+    transform: rotate(-45deg);
+    background-image: url(images/pencil.png);
+    left: 0;
+    z-index: 4;
+}
+#pencilColor{
+    position: absolute;
+    left:14%;
+    width: 78%;
+    height: 25px;
+    background-color: black;
+}
+#aboutHeader{
+    position: absolute;
+    left: 50%;
+    padding-left: 10%; 
+    transform: translate(-50%);
+    top: 5%;
+    font-size: 50px;
+    z-index: 2;
+    white-space: nowrap;
+}
+#aboutText{
+    position: absolute;
+    left:10%;
+    top: 110px;
+    font-size: 30px;
+    line-height: 40px;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #proj{
     position: relative;
     background-color: green;
