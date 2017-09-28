@@ -32,6 +32,7 @@ function loadScript() {
 }
 
 function resize() {
+    notebookPaper();
     height = window.innerHeight;
     for (i = 0; i < sectIDs.length; i++) {
         document.getElementById(sectIDs[i]).style.minHeight = height + "px";
@@ -39,7 +40,7 @@ function resize() {
     scroll();
     makeSpace();
     solarSystem();
-    notebookPaper();
+
 }
 
 function toggleNav() {
@@ -162,7 +163,7 @@ function makeSpace() {
         star.style.width = "1px";
         star.style.height = "1px";
         star.style.animation = "glow infinite linear";
-        star.style.animationDuration = (Math.random() * 3) + 1 + "s"
+        star.style.animationDuration = (Math.random() * 3) + 1 + "s";
         star.style.animationDelay = Math.random() * 3 + "s";
         star.style.backgroundColor = "white";
         star.id = "stars";
@@ -210,15 +211,15 @@ function launchRocket() {
     document.getElementById("rocketImage").style.animationFillMode = "forwards";
 
     document.getElementById("middleRocketImage").style.animation = "launchRocket 1 linear";
-    document.getElementById("middleRocketImage").style.animationDuration = 20 + "s"
+    document.getElementById("middleRocketImage").style.animationDuration = 20 + "s";
     document.getElementById("middleRocketImage").style.animationFillMode = "forwards";
 
     document.getElementById("leftRocketImage").style.animation = "launchRocketLeftBooster 1 linear";
-    document.getElementById("leftRocketImage").style.animationDuration = 20 + "s"
+    document.getElementById("leftRocketImage").style.animationDuration = 20 + "s";
     document.getElementById("leftRocketImage").style.animationFillMode = "forwards";
 
     document.getElementById("rightRocketImage").style.animation = "launchRocketRightBooster 1 linear";
-    document.getElementById("rightRocketImage").style.animationDuration = 20 + "s"
+    document.getElementById("rightRocketImage").style.animationDuration = 20 + "s";
     document.getElementById("rightRocketImage").style.animationFillMode = "forwards";
 
     countDown = 10;
@@ -274,25 +275,23 @@ function launchRocket() {
 }
 
 function softwareEngineer() {
-    flash = 0
-    softDev = "SOFTWARE DEVELOPER"
+    flash = 0;
+    softDev = "SOFTWARE DEVELOPER";
     setInterval(function () {
-
         innHtml = "";
         for (i = 0; i < softDev.length; i++) {
-            if (softDev[i] == ' ') {
+            if (softDev[i] === ' ') {
                 innHtml = innHtml + " ";
-            } else if (i != flash) {
+            } else if (i !== flash) {
                 innHtml = innHtml + '<a style="color: yellowgreen">' + softDev[i] + '</a>';
             } else {
                 innHtml = innHtml + '<a style="color: green">' + softDev[i] + '</a>';
             }
-
         }
         document.getElementById("softwareDeveloperText").innerHTML = innHtml;
         ;
         flash = (flash + 1) % 17;
-    }, 1000);
+    }, 500);
 }
 
 function notebookNav() {
@@ -345,6 +344,8 @@ function noteBookBool(isDownBool) {
     }
 }
 
+
+//Function to change pencil color-------------------------------------------DONE
 function rgb() {
     ctx.globalCompositeOperation = "source-over";
     redValue = 255 - document.getElementById("redRange").value;
@@ -353,26 +354,25 @@ function rgb() {
     ctx.strokeStyle = "rgb(" + redValue + "," + greenValue + "," + blueValue + ")";
     document.getElementById("penSizeDisplay").style.backgroundColor = "rgb(" + redValue + "," + greenValue + "," + blueValue + ")";
     document.getElementById("pencilColor").style.backgroundColor = "rgb(" + redValue + "," + greenValue + "," + blueValue + ")";
-
 }
 
+//Function to change the pencil line width----------------------------------DONE
 function penWidth() {
     ctx.lineWidth = (101 - document.getElementById("drawWidthRange").value);
     document.getElementById("penSizeDisplay").style.width = (102 - document.getElementById("drawWidthRange").value) + "px";
     document.getElementById("penSizeDisplay").style.height = (102 - document.getElementById("drawWidthRange").value) + "px";
-
 }
 
+//Function to erase drawings------------------------------------------------DONE
 function eraser() {
     ctx.strokeStyle = "rgb(255, 255, 255)";
     ctx.globalCompositeOperation = "destination-out";
     ctx.strokeStyle = ("rgba(255,255,255,255)");
     ctx.fillStyle = "rgba(255,0,0,0)";
-
 }
 
 function toolSwitch() {
-    if (toolSwitchBool != true) {
+    if (toolSwitchBool !== true) {
         toolSwitchBool = true;
         eraser();
         document.getElementById("pencil").style.transform = "rotate(-225deg)";
@@ -386,13 +386,13 @@ function toolSwitch() {
     }
 }
 
-function notebookPaper() {
-    //document.getElementById("notebookSketch").style.height = document.getElementById("about").scrollHeight;
-    //document.getElementById("notebookSketch").style.height = document.getElementById("about").scrollHeight;
 
-    canvas.height = document.getElementById("about").scrollHeight;
+//Function to make the notebook lines---------------------------------------DONE
+function notebookPaper() {
+    document.getElementById("about").height = (110 + document.getElementById("aboutText").scrollHeight) + window.innerHeight;
+    canvas.height = document.getElementById("about").height;
     canvas.width = window.innerWidth;
-    notebookHeight = document.getElementById("about").scrollHeight - 107;
+    notebookHeight = document.getElementById("about").height - 107;
     innHTML = '<img id="notebookTop" src="images/notebookSheetTop.png"/>';
     while (notebookHeight > 0) {
         innHTML += '<img id="notebookLine" src="images/notebookSheetLines.png"/>';
