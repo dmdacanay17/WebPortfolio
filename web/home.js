@@ -1,24 +1,17 @@
+//UWP = Updates with progress
+//DFN = Done for now
+
 var togNav = true;
 var togProjects = true;
 var projHeight;
 var height;
-var sectIDs = ["pageHeader", "about", "proj", "javaQuizJSF", "pomodoro", "simon", "skills", "contact"
-];
+var sectIDs = ["pageHeader", "about", "skills", "contact"];
 var sectHeights = [];
 var javaQuizJSFChangeVal = 0;
 var space = 0;
-var planets = ["mercury", "venus", "earth", "mars", "asteroidBelt", "jupiter", "saturn", "uranus", "neptune"];
-var planetImages = ["mercuryImage", "venusImage", "earthImage", "marsImage", "asteroidBeltImage", "jupiterImage", "saturnImage", "uranusImage", "neptuneImage"];
-var distance = [14, 18, 22, 26, 60, 60, 70, 80, 90];
-var times = [88, 225, 365, 687, 10000, 4333, 10756, 30687, 60190];
-var sizes = [7, 8, 8, 5, 9, 7, 7, 5, 4];
+
 var links = ["topLink", "aboutLink", "skillsLink", "projectLink", "contactLink"];
-var isDown = false;
-var pastX;
-var pastY;
-var convas;
-var ctx;
-var toolSwitchBool = false;
+
 
 
 function loadScript() {
@@ -29,6 +22,10 @@ function loadScript() {
     resize();
     softwareEngineer();
     spaceNav();
+    addSkills();
+    for (i = 0; i < sectIDs.length; i++) {
+        document.getElementById(sectIDs[i]).style.zIndex = i + 1;
+    }
 }
 
 function resize() {
@@ -40,36 +37,6 @@ function resize() {
     scroll();
     makeSpace();
     solarSystem();
-
-}
-
-function toggleNav() {
-    if (togNav) {
-        document.getElementById("navigation-panel").style.animationDuration = ".5s";
-        document.getElementById("navigation-panel").style.WebkitAnimationName = "openNav";
-        document.getElementById("navigation-panel").style.MozAnimationName = "openNav";
-        document.getElementById("navigation-panel").style.left = "0px";
-        document.getElementById("page-body").style.animationDuration = ".5s";
-        document.getElementById("page-body").style.WebkitAnimationName = "openBody";
-        document.getElementById("page-body").style.left = "200px";
-        document.getElementById("toggle-nav").style.animationDuration = ".5s";
-        document.getElementById("toggle-nav").style.WebkitAnimationName = "openBtn";
-        document.getElementById("toggle-nav").style.left = "200px";
-        document.getElementById("toggle-nav").className = "glyphicon glyphicon-chevron-left";
-        togNav = false;
-    } else {
-        document.getElementById("navigation-panel").style.animationDuration = ".5s";
-        document.getElementById("navigation-panel").style.animationName = "closeNav";
-        document.getElementById("navigation-panel").style.left = "-200px";
-        document.getElementById("page-body").style.animationDuration = ".5s";
-        document.getElementById("page-body").style.animationName = "closeBody";
-        document.getElementById("page-body").style.left = "0px";
-        document.getElementById("toggle-nav").style.animationDuration = ".5s";
-        document.getElementById("toggle-nav").style.WebkitAnimationName = "closeBtn";
-        document.getElementById("toggle-nav").style.left = "0px";
-        document.getElementById("toggle-nav").className = "glyphicon glyphicon-chevron-right";
-        togNav = true;
-    }
 }
 
 function scroll() {
@@ -145,6 +112,117 @@ function javaQuizJSFChange(str) {
     }
 }
 
+/*Navigation Functions----------------------------------------------------------
+ --------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------*/
+
+//Function to open and close navigation panel-------------------------------DONE
+function toggleNav() {
+    if (togNav) {
+        document.getElementById("navigation-panel").style.animationDuration = ".5s";
+        document.getElementById("navigation-panel").style.WebkitAnimationName = "openNav";
+        document.getElementById("navigation-panel").style.MozAnimationName = "openNav";
+        document.getElementById("navigation-panel").style.left = "0px";
+        document.getElementById("page-body").style.animationDuration = ".5s";
+        document.getElementById("page-body").style.WebkitAnimationName = "openBody";
+        document.getElementById("page-body").style.left = "200px";
+        document.getElementById("toggle-nav").style.animationDuration = ".5s";
+        document.getElementById("toggle-nav").style.WebkitAnimationName = "openBtn";
+        document.getElementById("toggle-nav").style.left = "200px";
+        document.getElementById("toggle-nav").className = "glyphicon glyphicon-chevron-left";
+        togNav = false;
+    } else {
+        document.getElementById("navigation-panel").style.animationDuration = ".5s";
+        document.getElementById("navigation-panel").style.animationName = "closeNav";
+        document.getElementById("navigation-panel").style.left = "-200px";
+        document.getElementById("page-body").style.animationDuration = ".5s";
+        document.getElementById("page-body").style.animationName = "closeBody";
+        document.getElementById("page-body").style.left = "0px";
+        document.getElementById("toggle-nav").style.animationDuration = ".5s";
+        document.getElementById("toggle-nav").style.WebkitAnimationName = "closeBtn";
+        document.getElementById("toggle-nav").style.left = "0px";
+        document.getElementById("toggle-nav").className = "glyphicon glyphicon-chevron-right";
+        togNav = true;
+    }
+}
+
+//Function to reset navigation styles between changes------------------UWP
+function resetNav() {
+    document.getElementById("navigation-panel").style.backgroundColor = "";
+    document.getElementById("links").style.backgroundColor = "";
+    document.getElementById("links").style.borderStyle = "";
+    document.getElementById("links").style.borderWidth = "";
+    document.getElementById("links").style.borderRadius = "";
+    for (i = 0; i < links.length; i++) {
+        document.getElementById(links[i]).style.backgroundSize = "";
+        document.getElementById(links[i]).style.backgroundImage = "";
+        document.getElementById(links[i]).style.backgroundColor = "";
+        document.getElementById(links[i]).style.borderStyle = "";
+        document.getElementById(links[i]).style.borderWidth = "";
+        document.getElementById(links[i]).style.borderBottomWidth = "";
+    }
+}
+
+function spaceNav() {
+    resetNav();
+    document.getElementById("navigation-panel").style.backgroundImage = "";
+    document.getElementById("navigation-panel").style.backgroundColor = "#7EC7FF";
+    for (i = 0; i < links.length; i++) {
+        document.getElementById(links[i]).style.backgroundSize = "100% 100%";
+        document.getElementById(links[i]).style.backgroundImage = "url('images/cloud.png')";
+    }
+
+    document.getElementById("navContent").innerHTML = '<img id="rocketImage" src="images/rocket.png"/>\n\
+        <img id="middleRocketImage" src="images/middleRocket.png"/>\n\
+        <img id="leftRocketImage" src="images/leftRocket.png"/>\n\
+        <img id="rightRocketImage" src="images/rightRocket.png"/>\n\
+        <img id="launchPadImage" src="images/launchPad.png"/>\n\
+        <button id="launchButton" onclick="launchRocket()">Launch</button>';
+}
+
+//Function to make the navigation panel look like a notebook----------------
+function notebookNav() {
+    resetNav();
+    document.getElementById("navigation-panel").style.backgroundImage = "url('images/notebookCover.png')";
+    document.getElementById("navigation-panel").style.backgroundSize = "100% 100%";
+    document.getElementById("links").style.backgroundColor = "white";
+    document.getElementById("links").style.borderStyle = "solid";
+    document.getElementById("links").style.borderWidth = "3px";
+    document.getElementById("links").style.borderRadius = "25px";
+    for (i = 0; i < links.length; i++) {
+        document.getElementById(links[i]).style.backgroundSize = "100% 100%";
+        document.getElementById(links[i]).style.backgroundColor = "white";
+        document.getElementById(links[i]).style.borderStyle = "solid";
+        document.getElementById(links[i]).style.borderWidth = "0px";
+        document.getElementById(links[i]).style.borderBottomWidth = "1px";
+    }
+    document.getElementById("navContent").innerHTML = '\n\
+        <div id="red"><h4 id="redLabel">R</h4><input type="range" onchange="rgb()" id="redRange" value="255" min="0" max="255"></div>\n\
+        <div id="green"><h4 id="greenLabel">G</h4><input type="range" onchange="rgb()" id="greenRange" value="255" min="0" max="255"></div>\n\
+        <div id="blue"><h4 id="blueLabel">B</h4><input type="range" onchange="rgb()" id="blueRange" value="255" min="0" max="255"></div>\n\
+        <div id="size"><h4 id="sizeLabel">Pencil Width</h5><input type="range" onchange="penWidth()" id="drawWidthRange" value="100" min="1" max="100"></div>\n\
+        <div id="penColorDisplay"><div id="penSizeDisplay"></div></div>\n\
+        <div id="toolToggle">\n\
+            <h5 id="pencilActive">Draw</h5>\n\
+            <div id="pencilToggle" onclick="toolSwitch()" >\n\
+                <div id="toolSwitch">\n\
+            </div>\n\
+            <h5 id="eraserActive">Erase</h5>\n\
+        </div>';
+}
+
+
+
+/*Title Functions---------------------------------------------------------------
+ --------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------*/
+
+var planets = ["mercury", "venus", "earth", "mars", "asteroidBelt", "jupiter", "saturn", "uranus", "neptune"];
+var planetImages = ["mercuryImage", "venusImage", "earthImage", "marsImage", "asteroidBeltImage", "jupiterImage", "saturnImage", "uranusImage", "neptuneImage"];
+var distance = [14, 18, 22, 26, 60, 60, 70, 80, 90];
+var times = [88, 225, 365, 687, 10000, 4333, 10756, 30687, 60190];
+var sizes = [7, 8, 8, 5, 9, 7, 7, 5, 4];
+
 function makeSpace() {
     if (space !== 0) {
         var element = document.getElementById("starSpace");
@@ -188,21 +266,6 @@ function solarSystem() {
     document.getElementById("asteroidBeltImage").style.width = document.getElementById("asteroidBeltImage").scrollHeight + "px";
 
 
-}
-
-function spaceNav() {
-    document.getElementById("navigation-panel").style.backgroundImage = "";
-    document.getElementById("navigation-panel").style.backgroundColor = "#7EC7FF";
-    for (i = 0; i < links.length; i++) {
-        document.getElementById(links[i]).style.backgroundSize = "100% 100%";
-        document.getElementById(links[i]).style.backgroundImage = "url('images/cloud.png')";
-    }
-    document.getElementById("navContent").innerHTML = '<img id="rocketImage" src="images/rocket.png"/>\n\
-        <img id="middleRocketImage" src="images/middleRocket.png"/>\n\
-        <img id="leftRocketImage" src="images/leftRocket.png"/>\n\
-        <img id="rightRocketImage" src="images/rightRocket.png"/>\n\
-        <img id="launchPadImage" src="images/launchPad.png"/>\n\
-        <button id="launchButton" onclick="launchRocket()">Launch</button>';
 }
 
 function launchRocket() {
@@ -294,29 +357,19 @@ function softwareEngineer() {
     }, 500);
 }
 
-function notebookNav() {
-    document.getElementById("navigation-panel").style.backgroundImage = "url('images/notebookCover.png')";
-    document.getElementById("navigation-panel").style.backgroundSize = "100% 100%";
-    for (i = 0; i < links.length; i++) {
-        document.getElementById(links[i]).style.backgroundSize = "100% 100%";
-        document.getElementById(links[i]).style.backgroundColor = "white";
-    }
-    document.getElementById("navContent").innerHTML = '\n\
-        <div id="red"><h4 id="redLabel">R</h4><input type="range" onchange="rgb()" id="redRange" value="255" min="0" max="255"></div>\n\
-        <div id="green"><h4 id="greenLabel">G</h4><input type="range" onchange="rgb()" id="greenRange" value="255" min="0" max="255"></div>\n\
-        <div id="blue"><h4 id="blueLabel">B</h4><input type="range" onchange="rgb()" id="blueRange" value="255" min="0" max="255"></div>\n\
-        <div id="size"><h4 id="sizeLabel">Pencil Width</h5><input type="range" onchange="penWidth()" id="drawWidthRange" value="100" min="1" max="100"></div>\n\
-        <div id="penColorDisplay"><div id="penSizeDisplay"></div></div>\n\
-        <div id="toolToggle">\n\
-            <h5 id="pencilActive">Pencil</h5>\n\
-            <div id="pencilToggle" onclick="toolSwitch()" >\n\
-                <div id="toolSwitch" onclick="toolSwitch()">\n\
-            </div>\n\
-            <h5 id="eraserActive">Eraser</h5>\n\
-        </div>';
 
-}
+/*About Functions---------------------------------------------------------------
+ --------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------*/
 
+var isDown = false;
+var pastX;
+var pastY;
+var convas;
+var ctx;
+var toolSwitchBool = false;
+
+//Function to draw on notebook----------------------------------------------DONE
 function noteBookDraw() {
     if (isDown === true) {
         var loc = canvas.getBoundingClientRect();
@@ -334,6 +387,8 @@ function noteBookDraw() {
     movePencil();
 }
 
+//Function when mouse is clicked/released to decide drawing-----------------BUG!
+//KNOWN BUG: Overscrolled will create a line
 function noteBookBool(isDownBool) {
     scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     isDown = isDownBool;
@@ -343,7 +398,6 @@ function noteBookBool(isDownBool) {
         pastX = event.clientX - 200;
     }
 }
-
 
 //Function to change pencil color-------------------------------------------DONE
 function rgb() {
@@ -371,6 +425,7 @@ function eraser() {
     ctx.fillStyle = "rgba(255,0,0,0)";
 }
 
+//Function to twitch between draw and erase---------------------------------DONE
 function toolSwitch() {
     if (toolSwitchBool !== true) {
         toolSwitchBool = true;
@@ -382,10 +437,8 @@ function toolSwitch() {
         rgb();
         document.getElementById("pencil").style.transform = "rotate(-45deg)";
         document.getElementById("toolSwitch").style.right = "15px";
-
     }
 }
-
 
 //Function to make the notebook lines---------------------------------------DONE
 function notebookPaper() {
@@ -401,6 +454,8 @@ function notebookPaper() {
     document.getElementById("noteBookPaper").innerHTML = innHTML;
 }
 
+//Function to move the pencil on the notebook paper--------------------------DFN
+//Need to make move while scrolling
 function movePencil() {
     loc = document.getElementById("about").getBoundingClientRect();
     x = event.clientX - loc.left - 70;
@@ -408,3 +463,43 @@ function movePencil() {
     document.getElementById("pencil").style.left = x + "px";
     document.getElementById("pencil").style.top = y + "px";
 }
+
+
+
+/*Skills Functions---------------------------------------------------------------
+ --------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------*/
+var mySkillsImg = ["java", "android", "cpp", "csharp", "css", "html", "javascript", "netbeans", "python", "sql", "visualstudio", "windows"];
+var mySkillsText = ["Java", "Android", "C++", "C#", "CSS", "HTML", "JavaScript", "NetBeans", "Python", "SQL", "Visual Studio", "Windows"];
+
+function addSkills(){
+    for(i = 0; i < mySkills.length; i++){
+        document.getElementById("skillCards").innerHTML +='<div id = "' +mySkills[i]+'"  style="position: relative; background-color: black; height: 200px; width: 200px; left: 50%; transform: translate(-50%);" onmouseover="flipText(\''  + mySkills[i]+'\')" onmouseout="flipImage(\''+mySkills[i]+'\')">'+mySkills[i]+'</div>';
+    }
+}
+//<img src="images/'+mySkills[i]+'.png" style="height: 200px;" />
+function flipText(cardID){
+   // document.getElementById("topLink").innerHTML = cardID;
+   // document.getElementById(cardID).style.animation = "flipCardBack 1 linear";
+   // document.getElementById(cardID).style.animationDuration = 1 + "s";
+   // setTimeout(function(){
+    //    document.getElementById(cardID).innerHTML=cardID;
+   // },500);
+}
+
+function flipImage(cardID){
+    document.getElementById(cardID).style.animation = "flipCardFront 1 linear";
+    document.getElementById(cardID).style.animationDuration = 1 + "s";
+    //setTimeout(function(){
+       // document.getElementById(cardID).innerHTML='<img src="images/'+cardID+'.png" style="height: 200px;" />';
+  //},500);
+}
+
+function cardCSS(){
+    
+}
+
+
+//Slide box game
+//memory match game
+//betting game
